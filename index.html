@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OMDb API</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>OMDb API</h1>
+    <div class="container">
+        <div class="input-container">
+            <input type="text" id="movieTitle" placeholder="Digite o título do filme">
+            <span class="clear-input" onclick="clearInput()">&#10006;</span>
+        </div>
+        <button onclick="searchMovie()">Pesquisar</button>
+        <div id="movieInfo" style="display: none;"></div>
+        <p id="error-message" class="error-message" style="color: red;"></p>
+        <button id="helpButton" onclick="showTutorial()">Ajuda</button>
+    </div>
+
+    <!-- Tutorial Modal -->
+    <div id="tutorialModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTutorial()">&times;</span>
+            <h2>Como usar o site</h2>
+            <p>1. Digite o título do filme que você deseja pesquisar no campo de pesquisa.</p>
+            <p>2. Clique no botão "Pesquisar".</p>
+            <p>3. As informações do filme serão exibidas na caixa abaixo.</p>
+            <p>4. Se nenhum filme for encontrado, você verá uma mensagem de erro.</p>
+        </div>
+    </div>
+
+    <script>
+        function clearInput() {
+            document.getElementById('movieTitle').value = '';
+            document.getElementById('error-message').textContent = '';
+            document.getElementById('movieInfo').style.display = 'none';
+        }
+
+        function searchMovie() {
+            const apiKey = '437cddb7'; 
+            const movieTitle = document.getElementById('movieTitle').value;
+
+            if (movieTitle.trim() === '') {
+                document.getElementById('error-message').textContent = 'Por favor, preencha o campo de pesquisa.';
+                return;
+            }
+
+            document.getElementById('error-message').textContent = '';
+
+            const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&t=${movieTitle}`;
+
+            const movieInfo = document.getElementById('movieInfo');
+            movieInfo.style.display = 'none';
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.Response === "True") {
+                        const movieData = `
+                            <h2>${data.Title}</h2>
+                            <p>Ano: ${data.Year}</p>
+                            <p>Diretor: ${data.Director}</p>
+                            <p>Gênero: ${data.Genre}</p>
+                            <p>Resumo: ${data.Plot}</p>
+                        `;
+                        movieInfo.innerHTML = movieData;
+                        movieInfo.style.display = 'block';
+                    } else {
+                        movieInfo.innerHTML = "<p>Filme não encontrado</p>";
+                        movieInfo.style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na solicitação da API', error);
+                });
+        }
+
+        function showTutorial() {
+            document.getElementById('tutorialModal').style.display = 'block';
+        }
+
+        function closeTutorial() {
+            document.getElementById('tutorialModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
