@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #dbe4eb;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    background-color: #0078d4;
+    color: white;
+    padding: 4vh; 
+}
+
+.container {
+    max-width: 100%; 
+    margin: 0 auto;
+    padding: 5vw; 
+}
+
+input[type="text"] {
+    width: 80%; 
+    padding: 1.5vh;
+    margin: 1vh 0; 
+    border-radius: 3px;
+    background-color: #FFFFFF
+}
+
+button {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 1.5vh 4vw;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.clear-input {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.input-container {
+    position: relative;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+#movieInfo {
+    margin-top: 2vh;
+    text-align: left;
+    padding: 5vw;
+    background-color: rgb(255, 255, 255, 0.6);
+    border: 1px solid #0078d4;
+    border-radius: 5px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #0078d4;
+    border-radius: 5px;
+    max-width: 500px;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+}
+
+/* Estilos adicionais */
+.clear-input {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.input-container {
+    position: relative;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
